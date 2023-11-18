@@ -7,22 +7,31 @@
     text-decoration: none;
     margin: 0;
 }
+/* scrollbar begin */
+body::-webkit-scrollbar {
+    width: 5px;
+  }
+  body::-webkit-scrollbar-track {
+    background: #000;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: #fff;
+  }
+/* scrollbar end */
 body {
-    width: 1920px;
     height: auto;
 }
 header {
     height: 50px;
     width: 100%;
     display: flex;
-    background-color: #e6dbc8;
-    justify-content: space-around;
+    background-color: #fff;
 }
 .logo {
     height: 100%;
-    width: 15%;
+    width: 30%;
     float: left;
-    background-color: #866a67;
+    background-color: #000;
     text-align: center;
 }
 .logo h1 {
@@ -32,14 +41,15 @@ header {
 }
 .menubar {
     height: 100%;
-    width: 50%;
-    background-color: #e6dbc8;
+    width: 30%;
+    background-color: #fff;
+    margin-left: 15%;
 }
 .menubar ul {
     height: 100%;
     list-style-type: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 .menubar li { float: left; }
@@ -68,4 +78,8 @@ header {
     width: 100%;
     height: 800px;
     background-color: #F5F5F5;
+}
+
+.carousel-item img {
+    filter: sepia(100%) saturate(100%) brightness(50%) hue-rotate(200deg);
 }
