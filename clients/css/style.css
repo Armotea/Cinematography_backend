@@ -83,3 +83,22 @@ header {
 .carousel-item img {
     filter: sepia(100%) saturate(100%) brightness(50%) hue-rotate(200deg);
 }
+
+.category {
+    display: none;
+    justify-content: space-around;
+}
+
+.cats {
+    list-style-type: none;
+}
+
+.cats li {
+    line-height: 50px;
+}
+
+.cats a {
+    text-decoration: none;
+    color:#000;
+    font-size: 1.25em;
+}
