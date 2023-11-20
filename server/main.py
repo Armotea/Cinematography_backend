@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 import schemas
 import models
-from database import Base, engine, SessionLocal
+from database import Base, engine, SessionLocal, db
 
 Base.metadata.create_all(bind=engine)
 
@@ -36,20 +36,17 @@ async def add_cinematography(cinematography: schemas.addCinematography, db: Sess
 
     return cinema
 
-@app.get("/getCinematographyByVarity/")         #Вывод кинематографа по типу кинематографа
+@app.get("/getCinematographyByVariety/")         #Вывод кинематографа по типу кинематографа
 async def get_cinematography_by_variety(variety: str, db: Session = Depends(get_db)):
     variety = str.capitalize(variety)
     variety = db.query(models.Variety).filter(models.Variety.variety_name == variety).first().id
 
     return db.query(models.Cinematography).filter(models.Cinematography.variety_id == variety).all()
 
-@app.get("/getCinematographyByGenres/")
-async def get_cinematography_by_genres(genre: str, db: Session = Depends(get_db)):
-    genre = str.capitalize(genre)
-    genre = db.query(models.Genres).filter(models.Genres.genre_name == genre).first().id
-
-    return db.query(models.Cinematography).filter(models.Cinematography.genre_id == genre).all()
-
+@app.get("/getCinematographyByGenres/{id}")
+async def get_cinematography_by_genres(genre: int):
+    cinema = db.query(models.Cinematography).filter(models.Cinematography.genre_id == genre).all()
+    return cinema
 
 @app.get("/getCinematographyByDirector/")
 async def get_cinematography_by_director(director: str, db: Session = Depends(get_db)):
@@ -64,13 +61,16 @@ async def get_cinematography(db: Session = Depends(get_db)):
     return db.query(models.Cinematography).all()
 
 @app.get("/getVarieties/")          #Вывод всех типов кинематографа
-async def get_Varieties(db: Session = Depends(get_db)):
-    return db.query(models.Variety).all()
+async def get_Varieties():
+    varieties = db.query(models.Variety).all()
+    return varieties
 
 @app.get("/getGenres/")             #Вывод всех жанров
-async def get_genres(db: Session = Depends(get_db)):
-    return db.query(models.Genres).all()
+async def get_genres():
+    genres = db.query(models.Genres).all()
+    return genres
 
 @app.get("/getDirectors/")          #Вывод всех режиссёров
-async def get_directors(db: Session = Depends(get_db)):
-    return db.query(models.Directors).all()
+async def get_directors():
+    directors = db.query(models.Directors).all()
+    return directors
