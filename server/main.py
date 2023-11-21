@@ -48,13 +48,6 @@ async def get_cinematography_by_genres(genre: int):
     cinema = db.query(models.Cinematography).filter(models.Cinematography.genre_id == genre).all()
     return cinema
 
-@app.get("/getCinematographyByDirector/")
-async def get_cinematography_by_director(director: str, db: Session = Depends(get_db)):
-    director = str.capitalize(director)
-    director = db.query(models.Directors).filter(models.Directors.name == director).first().id
-
-    return db.query(models.Cinematography).filter(models.Cinematography.director_id == director).all()
-
 @app.get("/getCinematography/")
 @app.get("/getCinematography/")
 async def get_cinematography(db: Session = Depends(get_db)):
@@ -69,8 +62,3 @@ async def get_Varieties():
 async def get_genres():
     genres = db.query(models.Genres).all()
     return genres
-
-@app.get("/getDirectors/")          #Вывод всех режиссёров
-async def get_directors():
-    directors = db.query(models.Directors).all()
-    return directors
