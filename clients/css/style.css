@@ -85,20 +85,44 @@ header {
 }
 
 .category {
-    display: none;
     justify-content: space-around;
 }
 
+.cats h3 {
+    line-height: 50px;
+    width: 100%;
+    text-align: center;
+}
 .cats {
     list-style-type: none;
+    text-align: center;
+    width: 100%;
+    margin-left: -2%;
 }
 
 .cats li {
-    line-height: 50px;
+    margin-top: 26px;
+    height: auto;
 }
 
-.cats a {
+.cats p {
     text-decoration: none;
     color:#000;
     font-size: 1.25em;
+    cursor: pointer;
+}
+
+.cinematographyElement {
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    height: 300px;
+}
+
+.cinematographyElement h {
+    font-size: 30px;
+}
+
+.cinematographyElement p {
+    font-size: 24px;
 }

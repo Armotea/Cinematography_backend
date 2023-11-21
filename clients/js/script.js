@@ -12,18 +12,29 @@ categoryBtn.addEventListener('click', async function() {
   result = await response.json();
   for (i of result){
     cats_li = cats.appendChild(document.createElement('li'))
-    a = cats_li.appendChild(document.createElement('a'))
-    a.innerHTML = i.genre_name
-    a.href = '#'
+    p = cats_li.appendChild(document.createElement('p'))
+    h = cats_li.appendChild(document.createElement('h'))
+    p.innerHTML = i.genre_name
+    p.href = '#'
+    h.innerHTML = i.description
     let id = i.id
-    a.addEventListener('click', async function(){
+    let genre_name = i.genre_name
+    p.addEventListener('click', async function(){
       const response = await fetch(`http://127.0.0.1:8000/getCinematographyByGenres/{id}?genre=${id}`, {
         method: "GET",
       });
       result = await response.json();
       for (i of result){
-        h = cinematography.appendChild(document.createElement('h'))
-        h.innerHTML = i.name
+        div = cinematography.appendChild(document.createElement('div'))
+        div.classList.add('cinematographyElement')
+        cinemaName = div.appendChild(document.createElement('h'))
+        cinemaGenre = div.appendChild(document.createElement('p'))
+        cinemaDirector = div.appendChild(document.createElement('p'))
+        cinemaDescription = div.appendChild(document.createElement('p'))
+        cinemaName.innerHTML = i.name
+        cinemaGenre.innerHTML = 'Жанр: ' + genre_name
+        cinemaDirector.innerHTML = 'Режиссёр: ' + i.director
+        cinemaDescription.innerHTML = i.description
       };
   }, {once:true})}
 }, {once:true})
