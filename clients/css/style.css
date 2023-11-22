@@ -116,7 +116,7 @@ header {
     text-align: center;
     background-color: #000;
     color: #fff;
-    height: 300px;
+    height: 1000px;
 }
 
 .cinematographyElement h {
@@ -125,4 +125,9 @@ header {
 
 .cinematographyElement p {
     font-size: 24px;
+}
+
+.cinematography img {
+    height: 700px;
+    width: 500px;
 }

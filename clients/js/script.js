@@ -10,6 +10,7 @@ categoryBtn.addEventListener('click', async function() {
       method: "GET",
   });
   result = await response.json();
+  cats.innerHTML = ''
   for (i of result){
     cats_li = cats.appendChild(document.createElement('li'))
     p = cats_li.appendChild(document.createElement('p'))
@@ -24,17 +25,22 @@ categoryBtn.addEventListener('click', async function() {
         method: "GET",
       });
       result = await response.json();
+      cinematography.innerHTML = ''
       for (i of result){
         div = cinematography.appendChild(document.createElement('div'))
         div.classList.add('cinematographyElement')
-        cinemaName = div.appendChild(document.createElement('h'))
+        cinemaName = div.appendChild(document.createElement('p'))
+        cinemaImage = div.appendChild(document.createElement('img'))
+        cinemaVariety = div.appendChild(document.createElement('p'))
         cinemaGenre = div.appendChild(document.createElement('p'))
         cinemaDirector = div.appendChild(document.createElement('p'))
         cinemaDescription = div.appendChild(document.createElement('p'))
         cinemaName.innerHTML = i.name
+        cinemaImage.src = `${i.image}`
+        cinemaVariety.innerHTML = 'Тип: ' + i.variety
         cinemaGenre.innerHTML = 'Жанр: ' + genre_name
         cinemaDirector.innerHTML = 'Режиссёр: ' + i.director
         cinemaDescription.innerHTML = i.description
       };
-  }, {once:true})}
-}, {once:true})
+  }, )}
+}, )
