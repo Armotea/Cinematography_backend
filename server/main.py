@@ -35,28 +35,14 @@ async def add_cinematography(cinematography: schemas.addCinematography, db: Sess
     db.refresh(cinema)
 
     return cinema
-
-@app.get("/getCinematographyByVariety/")         #Вывод кинематографа по типу кинематографа
-async def get_cinematography_by_variety(variety: str, db: Session = Depends(get_db)):
-    variety = str.capitalize(variety)
-    variety = db.query(models.Variety).filter(models.Variety.variety_name == variety).first().id
-
-    return db.query(models.Cinematography).filter(models.Cinematography.variety_id == variety).all()
-
-@app.get("/getCinematographyByGenres/{id}")
+@app.get("/getCinematographyByGenres/{id}")         #Вывод кинематографа по жанру
 async def get_cinematography_by_genres(genre: int):
     cinema = db.query(models.Cinematography).filter(models.Cinematography.genre_id == genre).all()
     return cinema
 
-@app.get("/getCinematography/")
-@app.get("/getCinematography/")
+@app.get("/getCinematography/")         #Вывод всего кинематографа
 async def get_cinematography(db: Session = Depends(get_db)):
     return db.query(models.Cinematography).all()
-
-@app.get("/getVarieties/")          #Вывод всех типов кинематографа
-async def get_Varieties():
-    varieties = db.query(models.Variety).all()
-    return varieties
 
 @app.get("/getGenres/")             #Вывод всех жанров
 async def get_genres():

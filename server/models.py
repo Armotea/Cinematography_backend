@@ -6,18 +6,11 @@ class Cinematography(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    variety_id = Column(Integer, ForeignKey('variety.id'))
+    variety = Column(String)
     director = Column(String)
     genre_id = Column(Integer, ForeignKey('genres.id'))
     description = Column(String)
-    #image
-
-class Variety(Base):
-    __tablename__ = "variety"
-
-    id = Column(Integer, primary_key=True, index=True)
-    variety_name = Column(String)
-    description = Column(String)
+    image = Column(String)
 
 class Genres(Base):
     __tablename__ = "genres"
