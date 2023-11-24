@@ -3,7 +3,7 @@ category = document.querySelector('.category')
 cats = document.querySelector('.cats')
 categoryBtn = document.querySelector('.categoryBtn')
 
-categoryBtn.addEventListener('click', async function() {
+async function CinematographyByGenre() {
   category.style.display = 'block'
   const response = await fetch("http://127.0.0.1:8000/getGenres/", {
       method: "GET",
@@ -26,59 +26,51 @@ categoryBtn.addEventListener('click', async function() {
       });
       result = await response.json();
       cinematography.innerHTML = ''
-      for (i of result){
-        div = cinematography.appendChild(document.createElement('div'))
-        div.classList.add('cinematographyElement')
-        cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
-        cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
-        cinemaVariety = div.appendChild(document.createElement('p')).innerHTML = 'Тип: ' + i.variety
-        cinemaGenre = div.appendChild(document.createElement('p')).innerHTML = 'Жанр: ' + genre_name
-        cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
-        cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
-      };
-  }, )}
-}, )
-
-filmsBtn = document.querySelector('.filmsBtn')
-
-filmsBtn.addEventListener('click', async function() {
-  cinematography.innerHTML = ''
-  const response = await fetch("http://127.0.0.1:8000/getCinematography/", {
-      method: "GET",
-  });
-  result = await response.json();
-  for (i of result) {
-    if (i.variety === 'Фильм') {
-      div = cinematography.appendChild(document.createElement('div'))
-      div.classList.add('cinematographyElement')
-      cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
-      cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
-      cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
-      cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
-    } else {
-      console.log('This is not a movie!')
-    }
+      filmsCheckbox = document.querySelector('#films').checked
+      serialsCheckbox = document.querySelector('#serials').checked
+      if (filmsCheckbox  == true) {
+        cinematography.innerHTML = ''
+        for (i of result){
+          if (i.variety == 'Фильм') {
+            div = cinematography.appendChild(document.createElement('div'))
+            div.classList.add('cinematographyElement')
+            cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
+            cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
+            cinemaVariety = div.appendChild(document.createElement('p')).innerHTML = 'Тип: ' + i.variety
+            cinemaGenre = div.appendChild(document.createElement('p')).innerHTML = 'Жанр: ' + genre_name
+            cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
+            cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
+          }
+        }
+      } if (serialsCheckbox == true) {
+        cinematography.innerHTML = ''
+        for (i of result){
+          if (i.variety == 'Сериал') {
+            div = cinematography.appendChild(document.createElement('div'))
+            div.classList.add('cinematographyElement')
+            cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
+            cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
+            cinemaVariety = div.appendChild(document.createElement('p')).innerHTML = 'Тип: ' + i.variety
+            cinemaGenre = div.appendChild(document.createElement('p')).innerHTML = 'Жанр: ' + genre_name
+            cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
+            cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
+          }
+        }
+      } if ((serialsCheckbox == true) && (filmsCheckbox == true)) {
+        cinematography.innerHTML = ''
+        for (i of result){
+          div = cinematography.appendChild(document.createElement('div'))
+          div.classList.add('cinematographyElement')
+          cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
+          cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
+          cinemaVariety = div.appendChild(document.createElement('p')).innerHTML = 'Тип: ' + i.variety
+          cinemaGenre = div.appendChild(document.createElement('p')).innerHTML = 'Жанр: ' + genre_name
+          cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
+          cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
+        }
+      }
+    })
   }
-})
+}
 
-serialsBtn = document.querySelector('.serialsBtn')
-
-serialsBtn.addEventListener('click', async function() {
-  cinematography.innerHTML = ''
-  const response = await fetch("http://127.0.0.1:8000/getCinematography/", {
-      method: "GET",
-  });
-  result = await response.json();
-  for (i of result) {
-    if (i.variety === 'Сериал') {
-      div = cinematography.appendChild(document.createElement('div'))
-      div.classList.add('cinematographyElement')
-      cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
-      cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
-      cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
-      cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
-    } else {
-      console.log('This is not a movie!')
-    }
-  }
-})
+CinematographyByGenre()

@@ -125,7 +125,9 @@ header {
     text-align: center;
     font-weight: 800;
 }
-
+.cinematographyBlock {
+    min-height: 200px;
+}
 .cinematography {
     background-color: #000;
 }
@@ -166,4 +168,11 @@ header {
 
 .cinema_name {
     font-size: 1.5em;
+}
+
+.checkboxFilmsSerials {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5em;
+    color: #fff;
 }
