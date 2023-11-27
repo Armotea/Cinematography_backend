@@ -3,6 +3,22 @@ category = document.querySelector('.category')
 cats = document.querySelector('.cats')
 categoryBtn = document.querySelector('.categoryBtn')
 
+document.addEventListener('DOMContentLoaded', async function getAllCinematography() {
+  const response = await fetch("http://127.0.0.1:8000/getCinematography/", {
+    method: "GET",
+  });
+  result = await response.json();
+  for (i of result) {
+    div = cinematography.appendChild(document.createElement('div'))
+    div.classList.add('cinematographyElement')
+    cinemaName = div.appendChild(document.createElement('h')).innerHTML = i.name
+    cinemaImage = div.appendChild(document.createElement('img')).src = `${i.image}`
+    cinemaVariety = div.appendChild(document.createElement('p')).innerHTML = 'Тип: ' + i.variety
+    cinemaDirector = div.appendChild(document.createElement('p')).innerHTML = 'Режиссёр: ' + i.director
+    cinemaDescription = div.appendChild(document.createElement('p')).innerHTML = i.description
+  }
+})
+
 async function CinematographyByGenre() {
   category.style.display = 'block'
   const response = await fetch("http://127.0.0.1:8000/getGenres/", {

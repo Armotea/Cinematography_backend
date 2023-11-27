@@ -109,6 +109,7 @@ header {
     font-size: 1.5em;
     font-weight: 600;
     cursor: pointer;
+    color: green;
 }
 
 .cats p {
@@ -158,12 +159,14 @@ header {
 
 .cinematographyElement p {
     font-size: 1.05em;
+    margin-top: 15px;
 }
 
 .cinematographyElement img {
-    padding-top: 10px;
+    margin-top: 15px;
     height: 700px;
     width: 500px;
+    border: 10px double #fff;
 }
 
 .cinema_name {
